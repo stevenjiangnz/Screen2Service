@@ -9,6 +9,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MaasOne.Yahoo", "MaasOne.Ya
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AngularJSAuthentication.API", "AngularJSAuthentication.API\AngularJSAuthentication.API.csproj", "{1048A7F0-7617-4B04-9A0A-69A7083ECB10}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Screen2.Entity", "Screen2.Entity\Screen2.Entity.csproj", "{BF030715-F2A8-4F1F-B36D-E2EF9D1DFA94}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -55,6 +57,18 @@ Global
 		{1048A7F0-7617-4B04-9A0A-69A7083ECB10}.Release|x64.Build.0 = Release|Any CPU
 		{1048A7F0-7617-4B04-9A0A-69A7083ECB10}.Release|x86.ActiveCfg = Release|Any CPU
 		{1048A7F0-7617-4B04-9A0A-69A7083ECB10}.Release|x86.Build.0 = Release|Any CPU
+		{BF030715-F2A8-4F1F-B36D-E2EF9D1DFA94}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BF030715-F2A8-4F1F-B36D-E2EF9D1DFA94}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BF030715-F2A8-4F1F-B36D-E2EF9D1DFA94}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{BF030715-F2A8-4F1F-B36D-E2EF9D1DFA94}.Debug|x64.Build.0 = Debug|Any CPU
+		{BF030715-F2A8-4F1F-B36D-E2EF9D1DFA94}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{BF030715-F2A8-4F1F-B36D-E2EF9D1DFA94}.Debug|x86.Build.0 = Debug|Any CPU
+		{BF030715-F2A8-4F1F-B36D-E2EF9D1DFA94}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BF030715-F2A8-4F1F-B36D-E2EF9D1DFA94}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BF030715-F2A8-4F1F-B36D-E2EF9D1DFA94}.Release|x64.ActiveCfg = Release|Any CPU
+		{BF030715-F2A8-4F1F-B36D-E2EF9D1DFA94}.Release|x64.Build.0 = Release|Any CPU
+		{BF030715-F2A8-4F1F-B36D-E2EF9D1DFA94}.Release|x86.ActiveCfg = Release|Any CPU
+		{BF030715-F2A8-4F1F-B36D-E2EF9D1DFA94}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
