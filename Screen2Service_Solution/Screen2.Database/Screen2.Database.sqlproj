@@ -1,0 +1,158 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="4.0">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <Name>Screen2.Database</Name>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectVersion>4.1</ProjectVersion>
+    <ProjectGuid>{fd6ec410-7ca9-45fe-bd8a-8c3e5f8dc998}</ProjectGuid>
+    <DSP>Microsoft.Data.Tools.Schema.Sql.Sql110DatabaseSchemaProvider</DSP>
+    <OutputType>Database</OutputType>
+    <RootPath>
+    </RootPath>
+    <RootNamespace>Screen2.Database</RootNamespace>
+    <AssemblyName>Screen2.Database</AssemblyName>
+    <ModelCollation>1033,CI</ModelCollation>
+    <DefaultFileStructure>BySchemaAndSchemaType</DefaultFileStructure>
+    <DeployToDatabase>True</DeployToDatabase>
+    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
+    <TargetLanguage>CS</TargetLanguage>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <SqlServerVerification>False</SqlServerVerification>
+    <IncludeCompositeObjects>True</IncludeCompositeObjects>
+    <TargetDatabaseSet>True</TargetDatabaseSet>
+    <DefaultCollation>Latin1_General_CI_AS</DefaultCollation>
+    <DefaultFilegroup>PRIMARY</DefaultFilegroup>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <OutputPath>bin\Release\</OutputPath>
+    <BuildScriptName>$(MSBuildProjectName).sql</BuildScriptName>
+    <TreatWarningsAsErrors>False</TreatWarningsAsErrors>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <DefineDebug>false</DefineDebug>
+    <DefineTrace>true</DefineTrace>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <OutputPath>bin\Debug\</OutputPath>
+    <BuildScriptName>$(MSBuildProjectName).sql</BuildScriptName>
+    <TreatWarningsAsErrors>false</TreatWarningsAsErrors>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <DefineDebug>true</DefineDebug>
+    <DefineTrace>true</DefineTrace>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">11.0</VisualStudioVersion>
+    <!-- Default to the v11.0 targets path if the targets file for the current VS version is not found -->
+    <SSDTExists Condition="Exists('$(MSBuildExtensionsPath)\Microsoft\VisualStudio\v$(VisualStudioVersion)\SSDT\Microsoft.Data.Tools.Schema.SqlTasks.targets')">True</SSDTExists>
+    <VisualStudioVersion Condition="'$(SSDTExists)' == ''">11.0</VisualStudioVersion>
+  </PropertyGroup>
+  <Import Condition="'$(SQLDBExtensionsRefPath)' != ''" Project="$(SQLDBExtensionsRefPath)\Microsoft.Data.Tools.Schema.SqlTasks.targets" />
+  <Import Condition="'$(SQLDBExtensionsRefPath)' == ''" Project="$(MSBuildExtensionsPath)\Microsoft\VisualStudio\v$(VisualStudioVersion)\SSDT\Microsoft.Data.Tools.Schema.SqlTasks.targets" />
+  <ItemGroup>
+    <Folder Include="Properties" />
+    <Folder Include="dbo\" />
+    <Folder Include="dbo\Tables\" />
+    <Folder Include="dbo\Stored Procedures\" />
+    <Folder Include="dbo\Functions\" />
+    <Folder Include="dbo\Views\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Build Include="dbo\Tables\AspNetRoles.sql" />
+    <Build Include="dbo\Tables\AspNetUserRoles.sql" />
+    <Build Include="dbo\Tables\AspNetUsers.sql" />
+    <Build Include="dbo\Tables\AspNetUserClaims.sql" />
+    <Build Include="dbo\Tables\AspNetUserLogins.sql" />
+    <Build Include="dbo\Tables\__MigrationHistory.sql" />
+    <Build Include="dbo\Tables\Markets.sql" />
+    <Build Include="dbo\Tables\Shares.sql" />
+    <Build Include="dbo\Tables\Tickers.sql" />
+    <Build Include="dbo\Stored Procedures\USP_FeedPriceTickers.sql" />
+    <Build Include="dbo\Tables\Settings.sql" />
+    <Build Include="dbo\Tables\AuditLogs.sql" />
+    <Build Include="dbo\Stored Procedures\USP_GetLastTicker.sql" />
+    <Build Include="dbo\Stored Procedures\USP_DeleteShare.sql" />
+    <Build Include="dbo\Tables\ShareInfoes.sql" />
+    <Build Include="dbo\Tables\ETFInfoes.sql" />
+    <Build Include="dbo\Stored Procedures\USP_DeletePriceTickers.sql" />
+    <Build Include="dbo\Tables\WatchLists.sql" />
+    <Build Include="dbo\Functions\Split.sql" />
+    <Build Include="dbo\Stored Procedures\USP_AddSharesToWatchList.sql" />
+    <Build Include="dbo\Stored Procedures\USP_RemoveSharesFromWatchList.sql" />
+    <Build Include="dbo\Stored Procedures\USP_GetWatchList.sql" />
+    <Build Include="dbo\Stored Procedures\USP_GetTickerByShare.sql" />
+    <Build Include="dbo\Stored Procedures\USP_GetIndicatorByShare.sql" />
+    <Build Include="dbo\Tables\WatchListDetails.sql" />
+    <Build Include="dbo\Tables\Indicators.sql" />
+    <Build Include="dbo\Stored Procedures\USP_InsertIndicatorBatch.sql" />
+    <Build Include="dbo\Stored Procedures\USP_GetLatestIndicator.sql" />
+    <Build Include="dbo\Tables\Notes.sql" />
+    <Build Include="dbo\Stored Procedures\USP_GetNoteByShareDate.sql" />
+    <Build Include="dbo\Stored Procedures\USP_UpdateIndicatorBatch.sql" />
+    <Build Include="dbo\Stored Procedures\USP_SearchStock.sql" />
+    <Build Include="dbo\Stored Procedures\USP_GetLatestTradingDate.sql" />
+    <Build Include="dbo\Stored Procedures\USP_GetStockDataLatest.sql" />
+    <Build Include="dbo\Tables\Functoids.sql" />
+    <Build Include="dbo\Tables\Zones.sql" />
+    <Build Include="dbo\Tables\Scans.sql" />
+    <Build Include="dbo\Tables\ScanRuns.sql" />
+    <Build Include="dbo\Tables\Rules.sql" />
+    <Build Include="dbo\Tables\Formulae.sql" />
+    <Build Include="dbo\Stored Procedures\USP_GetDataStartDate.sql" />
+    <Build Include="dbo\Stored Procedures\USP_GetShareListByTradingDate.sql" />
+    <Build Include="dbo\Tables\Journeys.sql" />
+    <Build Include="dbo\Stored Procedures\USP_GetJourneyListByZone.sql" />
+    <Build Include="dbo\Tables\TradeOrders.sql" />
+    <Build Include="dbo\Tables\Brokers.sql" />
+    <Build Include="dbo\Tables\Accounts.sql" />
+    <Build Include="dbo\Stored Procedures\USP_GetPlanListByZone.sql" />
+    <Build Include="dbo\Stored Procedures\USP_GetIdeaList.sql" />
+    <Build Include="dbo\Stored Procedures\USP_SearchStockByWatch.sql" />
+    <Build Include="dbo\Stored Procedures\USP_GetShareByWatch.sql" />
+    <Build Include="dbo\Tables\DailyScans.sql" />
+    <Build Include="dbo\Tables\DailyScanResults.sql" />
+    <Build Include="dbo\Tables\AlertResults.sql" />
+    <Build Include="dbo\Stored Procedures\USP_DeleteAlertResultByAlert.sql" />
+    <Build Include="dbo\Stored Procedures\USP_DeleteDailyScanResultByDailyScan.sql" />
+    <Build Include="dbo\Stored Procedures\USP_InsertAlertResultBatch.sql" />
+    <Build Include="dbo\Stored Procedures\USP_InsertDailyScanResultBatch.sql" />
+    <Build Include="dbo\Stored Procedures\USP_GetLatestTradingDateByShare.sql" />
+    <Build Include="dbo\Stored Procedures\USP_GetNoteByShareZone.sql" />
+    <Build Include="dbo\Stored Procedures\USP_GetNextTradingDate.sql" />
+    <Build Include="dbo\Tables\AccountBalances.sql" />
+    <Build Include="dbo\Tables\AccountBalanceLogs.sql" />
+    <Build Include="dbo\Tables\AccountJourneys.sql" />
+    <Build Include="dbo\Tables\Alerts.sql" />
+    <Build Include="dbo\Tables\Ideas.sql" />
+    <Build Include="dbo\Tables\Transactions.sql" />
+    <Build Include="dbo\Tables\Plans.sql" />
+    <Build Include="dbo\Stored Procedures\USP_GetAccountFullByZone.sql" />
+    <Build Include="dbo\Stored Procedures\USP_DeleteTransactionByAccount.sql" />
+    <Build Include="dbo\Stored Procedures\USP_GetTransactionList.sql" />
+    <Build Include="dbo\Tables\TradeSets.sql" />
+    <Build Include="dbo\Tables\OrderReviews.sql" />
+    <Build Include="dbo\Stored Procedures\USP_GetAccountBalanceJourneyByAccount.sql" />
+    <Build Include="dbo\Stored Procedures\USP_GetPositionListByAccount.sql" />
+    <Build Include="dbo\Tables\TradeSimulateOrders.sql" />
+    <Build Include="dbo\Views\VWTradeSimulateOrder.sql" />
+    <Build Include="dbo\Stored Procedures\USP_RemoveTradeSimulateOrders.sql" />
+    <Build Include="dbo\Stored Procedures\USP_GetOutPositionById.sql" />
+    <Build Include="dbo\Tables\AccountBalanceJourneys.sql" />
+    <Build Include="dbo\Tables\TradePositions.sql" />
+    <Build Include="dbo\Tables\TradeReviews.sql" />
+    <Build Include="dbo\Tables\StatScanSets.sql" />
+    <Build Include="dbo\Tables\Records.sql" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Screen2.Database.publish.xml" />
+    <None Include="Screen2_1.Database.publish.xml" />
+  </ItemGroup>
+</Project>
