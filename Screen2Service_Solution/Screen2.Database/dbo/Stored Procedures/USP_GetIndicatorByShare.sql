@@ -1,0 +1,57 @@
+﻿CREATE PROCEDURE [dbo].[USP_GetIndicatorByShare]
+	@ShareId int = 0,
+	@StartDate int =-1,
+	@EndDate int = -1
+AS
+	SELECT [Id]
+      ,[TradingDate]
+      ,[ShareId]
+      ,[Close]
+      ,[SMA5]
+      ,[SMA10]
+      ,[SMA30]
+      ,[SMA50]
+      ,[SMA200]
+      ,[EMA10]
+      ,[EMA20]
+      ,[EMA50]
+      ,[BB_Middle]
+      ,[BB_Low]
+      ,[BB_High]
+      ,[ADX]
+      ,[ADX_Plus]
+      ,[ADX_Minus]
+      ,[MACD]
+      ,[MACD_Signal]
+      ,[MACD_Hist]
+      ,[Heikin_Open]
+      ,[Heikin_Close]
+      ,[Heikin_Low]
+      ,[Heikin_High]
+      ,[Stochastic_K]
+      ,[Stochastic_D]
+      ,[RSI]
+      ,[RSI2]
+      ,[WR]
+  	  ,[Delt_Price]
+	  ,[Delt_SMA5]
+	  ,[Delt_SMA10]
+  	  ,[Delt_SMA50]
+	  ,[Delt_EMA20]
+	  ,[Delt_MACD_Hist]
+	  ,[Delt_MACD]
+  	  ,[Delt_MACD_Signal]
+  	  ,[Delt_K]
+  	  ,[Delt_D]
+  	  ,[Vol_AVG5]
+  	  ,[Vol_AVG10]
+  	  ,[Vol_AVG20]
+  	  ,[Delt_Diff_ADX],
+	  [Prev_Heikin]
+  FROM [Screen2DB].[dbo].[Indicators]
+  Where [ShareId] = @ShareId AND
+	([TradingDate]>= @StartDate OR @StartDate =-1) AND
+	([TradingDate]<= @EndDate OR @EndDate =-1)
+	ORDER BY [TradingDate]
+
+RETURN 0
