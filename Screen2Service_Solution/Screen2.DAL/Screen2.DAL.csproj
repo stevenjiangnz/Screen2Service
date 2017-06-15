@@ -1,0 +1,510 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{E57E125B-0F46-4DEE-BC31-AD1B1E76EBC7}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Screen2.DAL</RootNamespace>
+    <AssemblyName>Screen2.DAL</AssemblyName>
+    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="log4net, Version=1.2.15.0, Culture=neutral, PublicKeyToken=669e0ddf0bb1aa2a, processorArchitecture=MSIL">
+      <HintPath>..\packages\log4net.2.0.5\lib\net45-full\log4net.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.AspNet.Identity.Core, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.Identity.Core.2.2.1\lib\net45\Microsoft.AspNet.Identity.Core.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.AspNet.Identity.EntityFramework, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.Identity.EntityFramework.2.2.1\lib\net45\Microsoft.AspNet.Identity.EntityFramework.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.AspNet.Identity.Owin, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.Identity.Owin.2.2.1\lib\net45\Microsoft.AspNet.Identity.Owin.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.Owin, Version=3.0.1.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Owin.3.0.1\lib\net45\Microsoft.Owin.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Security, Version=3.0.1.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Owin.Security.3.0.1\lib\net45\Microsoft.Owin.Security.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Security.Cookies, Version=3.0.1.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Owin.Security.Cookies.3.0.1\lib\net45\Microsoft.Owin.Security.Cookies.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Security.OAuth, Version=3.0.1.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Owin.Security.OAuth.3.0.1\lib\net45\Microsoft.Owin.Security.OAuth.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Newtonsoft.Json, Version=8.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.8.0.2\lib\net45\Newtonsoft.Json.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Owin, Version=1.0.0.0, Culture=neutral, PublicKeyToken=f0ebd12fd5e55cc5, processorArchitecture=MSIL">
+      <HintPath>..\packages\Owin.1.0\lib\net40\Owin.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="DataContext.cs" />
+    <Compile Include="ApplicationRole.cs" />
+    <Compile Include="ApplicationUser.cs" />
+    <Compile Include="GenericRepository.cs" />
+    <Compile Include="Interface\IDataContext.cs" />
+    <Compile Include="Interface\IRepository.cs" />
+    <Compile Include="Interface\IUnitWork.cs" />
+    <Compile Include="MigrationHelper.cs" />
+    <Compile Include="Migrations\201602220907348_initial.cs" />
+    <Compile Include="Migrations\201602220907348_initial.Designer.cs">
+      <DependentUpon>201602220907348_initial.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201610030036419_Addordervalue3.cs" />
+    <Compile Include="Migrations\201610030036419_Addordervalue3.Designer.cs">
+      <DependentUpon>201610030036419_Addordervalue3.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201610090046284_updateTrade09102016.cs" />
+    <Compile Include="Migrations\201610090046284_updateTrade09102016.Designer.cs">
+      <DependentUpon>201610090046284_updateTrade09102016.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201610090827013_updateTrade09102016-2.cs" />
+    <Compile Include="Migrations\201610090827013_updateTrade09102016-2.Designer.cs">
+      <DependentUpon>201610090827013_updateTrade09102016-2.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201610100926558_updateTradeOrder10102016.cs" />
+    <Compile Include="Migrations\201610100926558_updateTradeOrder10102016.Designer.cs">
+      <DependentUpon>201610100926558_updateTradeOrder10102016.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201610100945073_updateTradeOrder10102016-2.cs" />
+    <Compile Include="Migrations\201610100945073_updateTradeOrder10102016-2.Designer.cs">
+      <DependentUpon>201610100945073_updateTradeOrder10102016-2.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201610111002107_updateTradeOrder10102016-3.cs" />
+    <Compile Include="Migrations\201610111002107_updateTradeOrder10102016-3.Designer.cs">
+      <DependentUpon>201610111002107_updateTradeOrder10102016-3.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201610111006277_updateTradeOrder10102016-5.cs" />
+    <Compile Include="Migrations\201610111006277_updateTradeOrder10102016-5.Designer.cs">
+      <DependentUpon>201610111006277_updateTradeOrder10102016-5.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201610111014341_updateTradeOrder11102016-2.cs" />
+    <Compile Include="Migrations\201610111014341_updateTradeOrder11102016-2.Designer.cs">
+      <DependentUpon>201610111014341_updateTradeOrder11102016-2.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201610111017528_updateTradeOrder11102016-3.cs" />
+    <Compile Include="Migrations\201610111017528_updateTradeOrder11102016-3.Designer.cs">
+      <DependentUpon>201610111017528_updateTradeOrder11102016-3.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201610111029393_updateTradeOrder11102016-4.cs" />
+    <Compile Include="Migrations\201610111029393_updateTradeOrder11102016-4.Designer.cs">
+      <DependentUpon>201610111029393_updateTradeOrder11102016-4.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201610111033336_updateTradeOrder11102016-5.cs" />
+    <Compile Include="Migrations\201610111033336_updateTradeOrder11102016-5.Designer.cs">
+      <DependentUpon>201610111033336_updateTradeOrder11102016-5.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201610111339218_updateTradeOrder11102016-6.cs" />
+    <Compile Include="Migrations\201610111339218_updateTradeOrder11102016-6.Designer.cs">
+      <DependentUpon>201610111339218_updateTradeOrder11102016-6.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201610111340460_updateTradeOrder11102016-7.cs" />
+    <Compile Include="Migrations\201610111340460_updateTradeOrder11102016-7.Designer.cs">
+      <DependentUpon>201610111340460_updateTradeOrder11102016-7.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201610130902502_updateTradeOrder13102016.cs" />
+    <Compile Include="Migrations\201610130902502_updateTradeOrder13102016.Designer.cs">
+      <DependentUpon>201610130902502_updateTradeOrder13102016.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201610201042335_update transaction20102016.cs" />
+    <Compile Include="Migrations\201610201042335_update transaction20102016.Designer.cs">
+      <DependentUpon>201610201042335_update transaction20102016.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201610201400292_add trade review.cs" />
+    <Compile Include="Migrations\201610201400292_add trade review.Designer.cs">
+      <DependentUpon>201610201400292_add trade review.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201610211100090_update trade review21102016.cs" />
+    <Compile Include="Migrations\201610211100090_update trade review21102016.Designer.cs">
+      <DependentUpon>201610211100090_update trade review21102016.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201610211155280_update trade review21102016-2.cs" />
+    <Compile Include="Migrations\201610211155280_update trade review21102016-2.Designer.cs">
+      <DependentUpon>201610211155280_update trade review21102016-2.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201610212257020_update trade review21102016-3.cs" />
+    <Compile Include="Migrations\201610212257020_update trade review21102016-3.Designer.cs">
+      <DependentUpon>201610212257020_update trade review21102016-3.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201610220321421_update trade review21102016-4.cs" />
+    <Compile Include="Migrations\201610220321421_update trade review21102016-4.Designer.cs">
+      <DependentUpon>201610220321421_update trade review21102016-4.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201610220725207_update trade review21102016-5.cs" />
+    <Compile Include="Migrations\201610220725207_update trade review21102016-5.Designer.cs">
+      <DependentUpon>201610220725207_update trade review21102016-5.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201610220753019_update trade review21102016-6.cs" />
+    <Compile Include="Migrations\201610220753019_update trade review21102016-6.Designer.cs">
+      <DependentUpon>201610220753019_update trade review21102016-6.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201610220806416_update trade review21102016-7.cs" />
+    <Compile Include="Migrations\201610220806416_update trade review21102016-7.Designer.cs">
+      <DependentUpon>201610220806416_update trade review21102016-7.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201610220813173_update trade review21102016-8.cs" />
+    <Compile Include="Migrations\201610220813173_update trade review21102016-8.Designer.cs">
+      <DependentUpon>201610220813173_update trade review21102016-8.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201610220829109_update trade review21102016-9.cs" />
+    <Compile Include="Migrations\201610220829109_update trade review21102016-9.Designer.cs">
+      <DependentUpon>201610220829109_update trade review21102016-9.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201610221253431_update trade review21102016-10.cs" />
+    <Compile Include="Migrations\201610221253431_update trade review21102016-10.Designer.cs">
+      <DependentUpon>201610221253431_update trade review21102016-10.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201610221303476_update trade review21102016-11.cs" />
+    <Compile Include="Migrations\201610221303476_update trade review21102016-11.Designer.cs">
+      <DependentUpon>201610221303476_update trade review21102016-11.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201610221327385_update trade review21102016-12.cs" />
+    <Compile Include="Migrations\201610221327385_update trade review21102016-12.Designer.cs">
+      <DependentUpon>201610221327385_update trade review21102016-12.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201610231155371_update trade review21102016-13.cs" />
+    <Compile Include="Migrations\201610231155371_update trade review21102016-13.Designer.cs">
+      <DependentUpon>201610231155371_update trade review21102016-13.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201610231208229_update trade review21102016-15.cs" />
+    <Compile Include="Migrations\201610231208229_update trade review21102016-15.Designer.cs">
+      <DependentUpon>201610231208229_update trade review21102016-15.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201610241048512_update trade review21102016-16.cs" />
+    <Compile Include="Migrations\201610241048512_update trade review21102016-16.Designer.cs">
+      <DependentUpon>201610241048512_update trade review21102016-16.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201610241344034_update trade review21102016-17.cs" />
+    <Compile Include="Migrations\201610241344034_update trade review21102016-17.Designer.cs">
+      <DependentUpon>201610241344034_update trade review21102016-17.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201610241345194_update trade review21102016-18.cs" />
+    <Compile Include="Migrations\201610241345194_update trade review21102016-18.Designer.cs">
+      <DependentUpon>201610241345194_update trade review21102016-18.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201610241349066_update trade review21102016-19.cs" />
+    <Compile Include="Migrations\201610241349066_update trade review21102016-19.Designer.cs">
+      <DependentUpon>201610241349066_update trade review21102016-19.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201610251053205_updateRule24102016.cs" />
+    <Compile Include="Migrations\201610251053205_updateRule24102016.Designer.cs">
+      <DependentUpon>201610251053205_updateRule24102016.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201610311058217_UpdateSimulateORder31102016.cs" />
+    <Compile Include="Migrations\201610311058217_UpdateSimulateORder31102016.Designer.cs">
+      <DependentUpon>201610311058217_UpdateSimulateORder31102016.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201611030809392_addStatscanset03112016.cs" />
+    <Compile Include="Migrations\201611030809392_addStatscanset03112016.Designer.cs">
+      <DependentUpon>201611030809392_addStatscanset03112016.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201611030813350_addStatscanset03112016-2.cs" />
+    <Compile Include="Migrations\201611030813350_addStatscanset03112016-2.Designer.cs">
+      <DependentUpon>201611030813350_addStatscanset03112016-2.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201611030815348_addStatscanset03112016-3.cs" />
+    <Compile Include="Migrations\201611030815348_addStatscanset03112016-3.Designer.cs">
+      <DependentUpon>201611030815348_addStatscanset03112016-3.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201611030825404_addStatscanset03112016-4.cs" />
+    <Compile Include="Migrations\201611030825404_addStatscanset03112016-4.Designer.cs">
+      <DependentUpon>201611030825404_addStatscanset03112016-4.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201611030914131_addStatscanset03112016-5.cs" />
+    <Compile Include="Migrations\201611030914131_addStatscanset03112016-5.Designer.cs">
+      <DependentUpon>201611030914131_addStatscanset03112016-5.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201611030920321_addStatscanset03112016-6.cs" />
+    <Compile Include="Migrations\201611030920321_addStatscanset03112016-6.Designer.cs">
+      <DependentUpon>201611030920321_addStatscanset03112016-6.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201611050845045_addIndicators03112016-6.cs" />
+    <Compile Include="Migrations\201611050845045_addIndicators03112016-6.Designer.cs">
+      <DependentUpon>201611050845045_addIndicators03112016-6.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201611070851459_addRecord07112016.cs" />
+    <Compile Include="Migrations\201611070851459_addRecord07112016.Designer.cs">
+      <DependentUpon>201611070851459_addRecord07112016.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201611071002332_updateRecord07112016-01.cs" />
+    <Compile Include="Migrations\201611071002332_updateRecord07112016-01.Designer.cs">
+      <DependentUpon>201611071002332_updateRecord07112016-01.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201611071028547_updateRecord07112016-02.cs" />
+    <Compile Include="Migrations\201611071028547_updateRecord07112016-02.Designer.cs">
+      <DependentUpon>201611071028547_updateRecord07112016-02.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201611071043181_updateRecord07112016-03.cs" />
+    <Compile Include="Migrations\201611071043181_updateRecord07112016-03.Designer.cs">
+      <DependentUpon>201611071043181_updateRecord07112016-03.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201611080942024_updatePosition08112016-01.cs" />
+    <Compile Include="Migrations\201611080942024_updatePosition08112016-01.Designer.cs">
+      <DependentUpon>201611080942024_updatePosition08112016-01.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201611090939446_updatePosition08112016-02.cs" />
+    <Compile Include="Migrations\201611090939446_updatePosition08112016-02.Designer.cs">
+      <DependentUpon>201611090939446_updatePosition08112016-02.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201611091026142_updatePosition08112016-03.cs" />
+    <Compile Include="Migrations\201611091026142_updatePosition08112016-03.Designer.cs">
+      <DependentUpon>201611091026142_updatePosition08112016-03.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201611121149355_updaterecord-12112016.cs" />
+    <Compile Include="Migrations\201611121149355_updaterecord-12112016.Designer.cs">
+      <DependentUpon>201611121149355_updaterecord-12112016.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201611140920564_updaterecord-12112016-2.cs" />
+    <Compile Include="Migrations\201611140920564_updaterecord-12112016-2.Designer.cs">
+      <DependentUpon>201611140920564_updaterecord-12112016-2.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201611160959540_TrachingAccountUpdate.cs" />
+    <Compile Include="Migrations\201611160959540_TrachingAccountUpdate.Designer.cs">
+      <DependentUpon>201611160959540_TrachingAccountUpdate.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\Configuration.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="UnitWork.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\201602220907348_initial.resx">
+      <DependentUpon>201602220907348_initial.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201610030036419_Addordervalue3.resx">
+      <DependentUpon>201610030036419_Addordervalue3.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201610090046284_updateTrade09102016.resx">
+      <DependentUpon>201610090046284_updateTrade09102016.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201610090827013_updateTrade09102016-2.resx">
+      <DependentUpon>201610090827013_updateTrade09102016-2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201610100926558_updateTradeOrder10102016.resx">
+      <DependentUpon>201610100926558_updateTradeOrder10102016.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201610100945073_updateTradeOrder10102016-2.resx">
+      <DependentUpon>201610100945073_updateTradeOrder10102016-2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201610111002107_updateTradeOrder10102016-3.resx">
+      <DependentUpon>201610111002107_updateTradeOrder10102016-3.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201610111006277_updateTradeOrder10102016-5.resx">
+      <DependentUpon>201610111006277_updateTradeOrder10102016-5.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201610111014341_updateTradeOrder11102016-2.resx">
+      <DependentUpon>201610111014341_updateTradeOrder11102016-2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201610111017528_updateTradeOrder11102016-3.resx">
+      <DependentUpon>201610111017528_updateTradeOrder11102016-3.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201610111029393_updateTradeOrder11102016-4.resx">
+      <DependentUpon>201610111029393_updateTradeOrder11102016-4.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201610111033336_updateTradeOrder11102016-5.resx">
+      <DependentUpon>201610111033336_updateTradeOrder11102016-5.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201610111339218_updateTradeOrder11102016-6.resx">
+      <DependentUpon>201610111339218_updateTradeOrder11102016-6.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201610111340460_updateTradeOrder11102016-7.resx">
+      <DependentUpon>201610111340460_updateTradeOrder11102016-7.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201610130902502_updateTradeOrder13102016.resx">
+      <DependentUpon>201610130902502_updateTradeOrder13102016.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201610201042335_update transaction20102016.resx">
+      <DependentUpon>201610201042335_update transaction20102016.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201610201400292_add trade review.resx">
+      <DependentUpon>201610201400292_add trade review.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201610211100090_update trade review21102016.resx">
+      <DependentUpon>201610211100090_update trade review21102016.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201610211155280_update trade review21102016-2.resx">
+      <DependentUpon>201610211155280_update trade review21102016-2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201610212257020_update trade review21102016-3.resx">
+      <DependentUpon>201610212257020_update trade review21102016-3.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201610220321421_update trade review21102016-4.resx">
+      <DependentUpon>201610220321421_update trade review21102016-4.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201610220725207_update trade review21102016-5.resx">
+      <DependentUpon>201610220725207_update trade review21102016-5.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201610220753019_update trade review21102016-6.resx">
+      <DependentUpon>201610220753019_update trade review21102016-6.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201610220806416_update trade review21102016-7.resx">
+      <DependentUpon>201610220806416_update trade review21102016-7.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201610220813173_update trade review21102016-8.resx">
+      <DependentUpon>201610220813173_update trade review21102016-8.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201610220829109_update trade review21102016-9.resx">
+      <DependentUpon>201610220829109_update trade review21102016-9.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201610221253431_update trade review21102016-10.resx">
+      <DependentUpon>201610221253431_update trade review21102016-10.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201610221303476_update trade review21102016-11.resx">
+      <DependentUpon>201610221303476_update trade review21102016-11.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201610221327385_update trade review21102016-12.resx">
+      <DependentUpon>201610221327385_update trade review21102016-12.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201610231155371_update trade review21102016-13.resx">
+      <DependentUpon>201610231155371_update trade review21102016-13.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201610231208229_update trade review21102016-15.resx">
+      <DependentUpon>201610231208229_update trade review21102016-15.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201610241048512_update trade review21102016-16.resx">
+      <DependentUpon>201610241048512_update trade review21102016-16.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201610241344034_update trade review21102016-17.resx">
+      <DependentUpon>201610241344034_update trade review21102016-17.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201610241345194_update trade review21102016-18.resx">
+      <DependentUpon>201610241345194_update trade review21102016-18.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201610241349066_update trade review21102016-19.resx">
+      <DependentUpon>201610241349066_update trade review21102016-19.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201610251053205_updateRule24102016.resx">
+      <DependentUpon>201610251053205_updateRule24102016.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201610311058217_UpdateSimulateORder31102016.resx">
+      <DependentUpon>201610311058217_UpdateSimulateORder31102016.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201611030809392_addStatscanset03112016.resx">
+      <DependentUpon>201611030809392_addStatscanset03112016.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201611030813350_addStatscanset03112016-2.resx">
+      <DependentUpon>201611030813350_addStatscanset03112016-2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201611030815348_addStatscanset03112016-3.resx">
+      <DependentUpon>201611030815348_addStatscanset03112016-3.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201611030825404_addStatscanset03112016-4.resx">
+      <DependentUpon>201611030825404_addStatscanset03112016-4.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201611030914131_addStatscanset03112016-5.resx">
+      <DependentUpon>201611030914131_addStatscanset03112016-5.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201611030920321_addStatscanset03112016-6.resx">
+      <DependentUpon>201611030920321_addStatscanset03112016-6.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201611050845045_addIndicators03112016-6.resx">
+      <DependentUpon>201611050845045_addIndicators03112016-6.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201611070851459_addRecord07112016.resx">
+      <DependentUpon>201611070851459_addRecord07112016.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201611071002332_updateRecord07112016-01.resx">
+      <DependentUpon>201611071002332_updateRecord07112016-01.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201611071028547_updateRecord07112016-02.resx">
+      <DependentUpon>201611071028547_updateRecord07112016-02.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201611071043181_updateRecord07112016-03.resx">
+      <DependentUpon>201611071043181_updateRecord07112016-03.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201611080942024_updatePosition08112016-01.resx">
+      <DependentUpon>201611080942024_updatePosition08112016-01.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201611090939446_updatePosition08112016-02.resx">
+      <DependentUpon>201611090939446_updatePosition08112016-02.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201611091026142_updatePosition08112016-03.resx">
+      <DependentUpon>201611091026142_updatePosition08112016-03.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201611121149355_updaterecord-12112016.resx">
+      <DependentUpon>201611121149355_updaterecord-12112016.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201611140920564_updaterecord-12112016-2.resx">
+      <DependentUpon>201611140920564_updaterecord-12112016-2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201611160959540_TrachingAccountUpdate.resx">
+      <DependentUpon>201611160959540_TrachingAccountUpdate.cs</DependentUpon>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Screen2.Entity\Screen2.Entity.csproj">
+      <Project>{bf030715-f2a8-4f1f-b36d-e2ef9d1dfa94}</Project>
+      <Name>Screen2.Entity</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Screen2.Shared\Screen2.Shared.csproj">
+      <Project>{f8b8e31b-958c-4d55-9a71-b734f5147fe5}</Project>
+      <Name>Screen2.Shared</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Screen2.Utils\Screen2.Utils.csproj">
+      <Project>{8987515a-66f8-42dc-b252-9b06cdb3dd6a}</Project>
+      <Name>Screen2.Utils</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
