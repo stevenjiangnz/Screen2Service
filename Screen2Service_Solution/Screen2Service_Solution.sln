@@ -41,13 +41,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Screen2.Service", "Screen2.
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Screen2.Hisotry.Loader", "Screen2.Hisotry.Loader\Screen2.Hisotry.Loader.csproj", "{D2B6D755-AE76-4389-B49F-8A7CBA1ECE26}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Release", "Release", "{44E1834F-5BF0-4137-85FB-72CDA0B7414E}"
-EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "SQL", "SQL", "{816E1CF7-BBCD-4D28-A345-BBE88DEA118F}"
-	ProjectSection(SolutionItems) = preProject
-		SqlQuery_1.sql = SqlQuery_1.sql
-	EndProjectSection
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -295,8 +288,5 @@ Global
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
-	EndGlobalSection
-	GlobalSection(NestedProjects) = preSolution
-		{816E1CF7-BBCD-4D28-A345-BBE88DEA118F} = {44E1834F-5BF0-4137-85FB-72CDA0B7414E}
 	EndGlobalSection
 EndGlobal
