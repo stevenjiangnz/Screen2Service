@@ -22,7 +22,7 @@ namespace Screen2.Api.Controllers
         [HttpGet]
         public IHttpActionResult Get()
         {
-            return Ok("OK. Service is online. on trigger when pull request");
+            return Ok("OK. Service is online. on trigger when pull request. from testcity");
         }
         #endregion
     }
