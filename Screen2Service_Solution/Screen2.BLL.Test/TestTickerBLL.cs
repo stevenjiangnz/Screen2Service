@@ -87,7 +87,7 @@ namespace Screen2.BLL.Test
         public void Test_UpdateDailyShareTickerBatchToday()
         {
             TickerBLL tBll = new TickerBLL(_unit);
-            tBll.UpdateDailyShareTickerBatchToday("20160614");
+            tBll.UpdateDailyShareTickerBatchToday("20170525");
 
         }
 

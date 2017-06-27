@@ -281,6 +281,7 @@
     <Content Include="Content\bootstrap.css.map" />
     <Content Include="Content\bootstrap-theme.min.css.map" />
     <Content Include="Content\bootstrap-theme.css.map" />
+    <None Include="Properties\PublishProfiles\screen2-vm - Web Deploy.pubxml" />
     <None Include="Properties\PublishProfiles\Screen2Api.pubxml" />
     <Content Include="scripts\ai.0.22.6-build00108.js" />
     <Content Include="scripts\ai.0.22.6-build00108.min.js" />
