@@ -41,6 +41,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Screen2.Service", "Screen2.
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Screen2.Hisotry.Loader", "Screen2.Hisotry.Loader\Screen2.Hisotry.Loader.csproj", "{D2B6D755-AE76-4389-B49F-8A7CBA1ECE26}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Screen2.BLL.Tests", "Screen2.BLL.Tests\Screen2.BLL.Tests.csproj", "{F72093BB-B3A1-4BEC-BFB5-4090A088310F}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -285,6 +287,18 @@ Global
 		{D2B6D755-AE76-4389-B49F-8A7CBA1ECE26}.Release|x64.Build.0 = Release|Any CPU
 		{D2B6D755-AE76-4389-B49F-8A7CBA1ECE26}.Release|x86.ActiveCfg = Release|Any CPU
 		{D2B6D755-AE76-4389-B49F-8A7CBA1ECE26}.Release|x86.Build.0 = Release|Any CPU
+		{F72093BB-B3A1-4BEC-BFB5-4090A088310F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F72093BB-B3A1-4BEC-BFB5-4090A088310F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F72093BB-B3A1-4BEC-BFB5-4090A088310F}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{F72093BB-B3A1-4BEC-BFB5-4090A088310F}.Debug|x64.Build.0 = Debug|Any CPU
+		{F72093BB-B3A1-4BEC-BFB5-4090A088310F}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{F72093BB-B3A1-4BEC-BFB5-4090A088310F}.Debug|x86.Build.0 = Debug|Any CPU
+		{F72093BB-B3A1-4BEC-BFB5-4090A088310F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F72093BB-B3A1-4BEC-BFB5-4090A088310F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F72093BB-B3A1-4BEC-BFB5-4090A088310F}.Release|x64.ActiveCfg = Release|Any CPU
+		{F72093BB-B3A1-4BEC-BFB5-4090A088310F}.Release|x64.Build.0 = Release|Any CPU
+		{F72093BB-B3A1-4BEC-BFB5-4090A088310F}.Release|x86.ActiveCfg = Release|Any CPU
+		{F72093BB-B3A1-4BEC-BFB5-4090A088310F}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
