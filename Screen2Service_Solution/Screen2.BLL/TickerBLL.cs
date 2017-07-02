@@ -771,6 +771,14 @@ namespace Screen2.BLL
             return tradingDate;
         }
 
+        public Boolean LoadTickers(ITickerLoader loader)
+        {
+            Boolean result;
+
+            result = loader.LoadTickers();
+            
+            return result;
+        }
         /// <summary>
         /// Gets the ticker list from CSV string.
         /// </summary>
