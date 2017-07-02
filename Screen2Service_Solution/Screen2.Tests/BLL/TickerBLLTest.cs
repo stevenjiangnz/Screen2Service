@@ -18,11 +18,11 @@ namespace Screen2.Tests.BLL
         //    tickerMock.Setup(loader => loader.LoadTickers()).Returns(true);
         //}
 
-        //[ClassInitialize]
-        //public static void SetUp(TestContext context)
-        //{
-        //}
-        
+        [ClassInitialize]
+        public static void SetUp(TestContext context)
+        {
+        }
+
         [TestInitialize]
         public void Initialize()
         {
