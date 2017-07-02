@@ -28,7 +28,7 @@ namespace Screen2.BLL
         #endregion
 
         #region Constructors
-        public TickerBLL(IUnitWork unit) : base(unit)
+        public TickerBLL(IUnitWork unit, string connectionString = null) : base(unit, connectionString)
         {
             _auditBLL = new AuditLogBLL(_unit);
         }

@@ -11,11 +11,12 @@ namespace Screen2.BLL
     {
         public bool LoadTickers()
         {
-            return this.UploadAsxXEodRaw();
+            return this.UploadAsxEodRaw();
         }
 
-        public virtual bool UploadAsxXEodRaw()
+        public virtual bool UploadAsxEodRaw()
         {
+
             throw new NotImplementedException();
         }
     }

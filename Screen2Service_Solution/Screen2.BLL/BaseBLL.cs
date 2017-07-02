@@ -32,7 +32,7 @@ namespace Screen2.BLL
         {
             _unit = unit;
 
-            if(!string.IsNullOrEmpty(connection))
+            if(string.IsNullOrEmpty(connection))
             {
                 _connectionString = ConfigurationManager.ConnectionStrings["Screen2Connection"].ConnectionString;
             }
