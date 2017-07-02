@@ -13,15 +13,10 @@ namespace Screen2.Tests.BLL
         private Mock<IUnitWork> unitMock = new Mock<IUnitWork>();
         private Mock<ITickerLoader> tickerMock = new Mock<ITickerLoader>();
 
-        //TickerBLLTest()
+        //[ClassInitialize]
+        //public static void SetUp(Microsoft.VisualStudio.TestTools.UnitTesting.TestContext context)
         //{
-        //    tickerMock.Setup(loader => loader.LoadTickers()).Returns(true);
         //}
-
-        [ClassInitialize]
-        public static void SetUp(TestContext context)
-        {
-        }
 
         [TestInitialize]
         public void Initialize()

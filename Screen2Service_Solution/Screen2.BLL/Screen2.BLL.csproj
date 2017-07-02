@@ -145,6 +145,7 @@
     <Compile Include="AccountBLL.cs" />
     <Compile Include="AlertBLL.cs" />
     <Compile Include="AlertResultBLL.cs" />
+    <Compile Include="AsxEodBLL.cs" />
     <Compile Include="AuditLogBLL.cs" />
     <Compile Include="BaseBLL.cs" />
     <Compile Include="BaseStatScan.cs" />

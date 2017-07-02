@@ -59,7 +59,7 @@ namespace Screen2.DAL
         public IDbSet<TradeSimulateOrder> TradeSimulateOrder { get; set; }
         public IDbSet<StatScanSet> StatScanSet { get; set; }
         public IDbSet<Record> Record { get; set; }
-
+        public IDbSet<AsxEod> AsxEod { get; set; }
 
         public static DataContext Create()
         {

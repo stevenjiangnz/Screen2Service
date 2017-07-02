@@ -55,6 +55,7 @@ namespace Screen2.DAL
         private IRepository<TradeSimulateOrder> _tradeSimulateOrder;
         private IRepository<StatScanSet> _statScanSet;
         private IRepository<Record> _record;
+        private IRepository<AsxEod> _asxEod;
 
         #endregion
 
@@ -426,6 +427,16 @@ namespace Screen2.DAL
                        (_record = new GenericRepository<Record>(_context));
             }
         }
+
+        public IRepository<AsxEod> AsxEod
+        {
+            get
+            {
+                return _asxEod ??
+                       (_asxEod = new GenericRepository<AsxEod>(_context));
+            }
+        }
+
         #endregion
 
         #region Methods
