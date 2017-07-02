@@ -28,11 +28,14 @@ namespace Screen2.BLL
         /// Initializes a new instance of the <see cref="BaseBLL{T}"/> class.
         /// </summary>
         /// <param name="unit">The unit.</param>
-        public BaseBLL(IUnitWork unit)
+        public BaseBLL(IUnitWork unit, string connection = null)
         {
             _unit = unit;
 
-            _connectionString = ConfigurationManager.ConnectionStrings["Screen2Connection"].ConnectionString;
+            if(!string.IsNullOrEmpty(connection))
+            {
+                _connectionString = ConfigurationManager.ConnectionStrings["Screen2Connection"].ConnectionString;
+            }
         }
         #endregion
 

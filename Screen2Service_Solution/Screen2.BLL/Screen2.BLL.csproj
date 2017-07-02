@@ -157,6 +157,7 @@
     <Compile Include="IdeaBLL.cs" />
     <Compile Include="IndicatorBLL.cs" />
     <Compile Include="Interface\IBaseBLL.cs" />
+    <Compile Include="Interface\ITickerLoader.cs" />
     <Compile Include="JourneyBLL.cs" />
     <Compile Include="MarketBLL.cs" />
     <Compile Include="NoteBLL.cs" />
@@ -172,6 +173,7 @@
     <Compile Include="ScanManager_Pullback_Short.cs" />
     <Compile Include="ScanManager_RSI2.cs" />
     <Compile Include="StatScanSetBLL.cs" />
+    <Compile Include="TickerLoader.cs" />
     <Compile Include="TradeManager.cs" />
     <Compile Include="TradePositionHistoryBLL.cs" />
     <Compile Include="TradeOrderBLL.cs" />
