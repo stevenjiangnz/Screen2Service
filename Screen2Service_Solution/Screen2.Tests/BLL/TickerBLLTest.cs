@@ -18,10 +18,10 @@ namespace Screen2.Tests.BLL
         //    tickerMock.Setup(loader => loader.LoadTickers()).Returns(true);
         //}
 
-        [ClassInitialize]
-        public static void SetUp(TestContext context)
-        {
-        }
+        //[ClassInitialize]
+        //public static void SetUp(TestContext context)
+        //{
+        //}
         
         [TestInitialize]
         public void Initialize()
@@ -33,7 +33,7 @@ namespace Screen2.Tests.BLL
         [TestMethod]
         public void TestLoadTickers_Should_Return_True()
         {
-            TickerBLL tbll = new TickerBLL(unitMock.Object);
+            TickerBLL tbll = new TickerBLL(unitMock.Object, "testconn");
 
             Boolean result = tbll.LoadTickers(tickerMock.Object);
 

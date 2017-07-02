@@ -63,6 +63,7 @@
     <Compile Include="AccountSummary.cs" />
     <Compile Include="Alert.cs" />
     <Compile Include="AlertResult.cs" />
+    <Compile Include="AsxEod.cs" />
     <Compile Include="AuditLog.cs" />
     <Compile Include="BaseEntity.cs" />
     <Compile Include="Broker.cs" />

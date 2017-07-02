@@ -22,9 +22,9 @@ namespace Screen2.Tests.BLL
         public void LoadTickers_Should_Return_True()
         {
             var mock = new Mock<TickerLoader>() { CallBase = true };
-            mock.Setup(loader => loader.UploadAsxXEodRaw()).Returns(true);
+            mock.Setup(loader => loader.UploadAsxEodRaw()).Returns(true);
 
-            TickerBLL bll = new TickerBLL(null);
+            TickerBLL bll = new TickerBLL(null, "testConnectionString");
 
             var result = bll.LoadTickers(mock.Object);
 
@@ -35,9 +35,9 @@ namespace Screen2.Tests.BLL
         public void LoadTickers_Should_Return_False()
         {
             var mock = new Mock<TickerLoader>() { CallBase = true };
-            mock.Setup(loader => loader.UploadAsxXEodRaw()).Returns(false);
+            mock.Setup(loader => loader.UploadAsxEodRaw()).Returns(false);
 
-            TickerBLL bll = new TickerBLL(null);
+            TickerBLL bll = new TickerBLL(null, "testConnectionString");
 
             var result = bll.LoadTickers(mock.Object);
 

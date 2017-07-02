@@ -9,6 +9,6 @@ namespace Screen2.BLL.Interface
     public interface ITickerLoader
     {
         Boolean LoadTickers();
-        Boolean UploadAsxXEodRaw();
+        Boolean UploadAsxEodRaw();
     }
 }
