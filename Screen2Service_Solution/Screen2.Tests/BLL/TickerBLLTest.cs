@@ -3,6 +3,7 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Moq;
 using Screen2.BLL;
 using Screen2.BLL.Interface;
+using Screen2.DAL;
 using Screen2.DAL.Interface;
 
 namespace Screen2.Tests.BLL
@@ -12,11 +13,7 @@ namespace Screen2.Tests.BLL
     {
         private Mock<IUnitWork> unitMock = new Mock<IUnitWork>();
         private Mock<ITickerLoader> tickerMock = new Mock<ITickerLoader>();
-
-        //[ClassInitialize]
-        //public static void SetUp(Microsoft.VisualStudio.TestTools.UnitTesting.TestContext context)
-        //{
-        //}
+        UnitWork _unit = new UnitWork(new DataContext());
 
         [TestInitialize]
         public void Initialize()
@@ -33,6 +30,14 @@ namespace Screen2.Tests.BLL
             Boolean result = tbll.LoadTickers(tickerMock.Object);
 
             Assert.IsTrue(result);
+        }
+
+        [TestMethod]
+        public void TestLoadAsxRawFromAzure()
+        {
+            TickerBLL tbll = new TickerBLL(_unit, null);
+
+            tbll.LoadAsxEodRawFromAzure();
         }
     }
 }

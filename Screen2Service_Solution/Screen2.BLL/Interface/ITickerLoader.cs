@@ -10,5 +10,6 @@ namespace Screen2.BLL.Interface
     {
         Boolean LoadTickers();
         Boolean UploadAsxEodRaw();
+        int? GetLastestRawTickerDate();
     }
 }

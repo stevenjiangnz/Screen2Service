@@ -10,7 +10,7 @@ namespace Screen2.Entity
 {
     public class AsxEod : BaseEntity
     {
-        public string Symbol { get; set; }
+        [Index("TradingDate_Index")]
         public int TradingDate { get; set; }
         public double Open { get; set; }
         public double Close { get; set; }
@@ -18,6 +18,7 @@ namespace Screen2.Entity
         public double Low { get; set; }
         public long Volumn { get; set; }
         public double? AdjustedClose { get; set; }
+        public long JSTicks { get; set; }
 
         [Required]
         [Index]
