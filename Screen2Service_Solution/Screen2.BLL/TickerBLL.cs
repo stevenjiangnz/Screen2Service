@@ -700,7 +700,51 @@ namespace Screen2.BLL
             return t;
         }
 
+        public void LoadAsxEodRawFromAzure()
+        {
+            List<TickerEODEntity> tickerEODList = null;
+            try
+            {
+                CloudStorageAccount storageAccount = CloudStorageAccount.Parse(
+                    ConfigurationManager.ConnectionStrings["EODASXConnectionString"].ConnectionString);
 
+                // Create the blob client.
+                CloudBlobClient blobClient = storageAccount.CreateCloudBlobClient();
+
+                // Retrieve reference to a previously created container.
+                CloudBlobContainer container = blobClient.GetContainerReference("asxeod");
+
+                var blobs = container.ListBlobs();
+
+                int i = 0;
+                foreach(var blob in blobs)
+                {
+                    i++;
+                    Console.WriteLine(blob.Uri);
+                }
+                //CloudBlockBlob blockBlob2 = container.GetBlockBlobReference(fileName);
+
+                //if (blockBlob2.Exists())
+                //{
+                //    string text;
+                //    using (var memoryStream = new MemoryStream())
+                //    {
+                //        blockBlob2.DownloadToStream(memoryStream);
+                //        text = System.Text.Encoding.UTF8.GetString(memoryStream.ToArray());
+                //        tickerEODList = GetTickerListFromCSVString(text);
+
+                //    }
+                //}
+            }
+            catch (Exception ex)
+            {
+                LogHelper.Error(_log, ex.ToString());
+                throw;
+            }
+
+            //return tickerEODList;
+
+        }
 
         /// <summary>
         /// Loads the daily share ticker from azure.
@@ -771,6 +815,11 @@ namespace Screen2.BLL
             return tradingDate;
         }
 
+        /// <summary>
+        /// Load tickers
+        /// </summary>
+        /// <param name="loader"></param>
+        /// <returns></returns>
         public Boolean LoadTickers(ITickerLoader loader)
         {
             Boolean result;

@@ -11,6 +11,7 @@ namespace Screen2.BLL
     {
         public bool LoadTickers()
         {
+
             return this.UploadAsxEodRaw();
         }
 
@@ -19,5 +20,11 @@ namespace Screen2.BLL
 
             throw new NotImplementedException();
         }
+
+        public virtual int? GetLastestRawTickerDate()
+        {
+            return -1;
+        }
+
     }
 }
