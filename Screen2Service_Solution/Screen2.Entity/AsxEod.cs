@@ -10,7 +10,12 @@ namespace Screen2.Entity
 {
     public class AsxEod : BaseEntity
     {
-        [Index("TradingDate_Index")]
+        [Column(TypeName = "VARCHAR")]
+        [Required]
+        [Index(IsClustered =false, IsUnique =false)]
+        public string Symbol { get; set; }
+        [Required]
+        [Index]
         public int TradingDate { get; set; }
         public double Open { get; set; }
         public double Close { get; set; }
@@ -18,12 +23,5 @@ namespace Screen2.Entity
         public double Low { get; set; }
         public long Volumn { get; set; }
         public double? AdjustedClose { get; set; }
-        public long JSTicks { get; set; }
-
-        [Required]
-        [Index]
-        public int ShareId { get; set; }
-
-        public virtual Share Share { get; set; }
     }
 }

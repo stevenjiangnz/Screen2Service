@@ -76,7 +76,7 @@ namespace Screen2.BLL.Test
             TickerBLL tBll = new TickerBLL(_unit);
             ShareBLL sBLL = new ShareBLL(_unit);
 
-            List<TickerEODEntity> tickerEODList;
+            List<AsxEod> tickerEODList;
             tickerEODList = tBll.LoadDailyShareTickerFromAzure("20160304");
 
             Share s = sBLL.GetShareBySymbol("MNE.AX");
