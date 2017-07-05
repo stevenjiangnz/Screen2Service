@@ -474,7 +474,7 @@ namespace Screen2.BLL
         {
             int successCount = 0;
             int failCount = 0;
-            List<TickerEODEntity> tickerEODList;
+            List<AsxEod> tickerEODList;
 
             StringBuilder resultString = new StringBuilder();
 
@@ -531,7 +531,7 @@ namespace Screen2.BLL
         /// </summary>
         /// <param name="s">The s.</param>
         /// <param name="eodList">The eod list.</param>
-        public void UpdateDailyShareTicker(Share s, List<TickerEODEntity> eodList)
+        public void UpdateDailyShareTicker(Share s, List<AsxEod> eodList)
         {
             Ticker lastTicker = GetLastTicker(s.Id, null);
 
@@ -623,11 +623,11 @@ namespace Screen2.BLL
         /// </summary>
         /// <param name="s">The s.</param>
         /// <param name="eodTickerList">The eod ticker list.</param>
-        public void updateDailyTickerFromEODTicker(Share s, List<TickerEODEntity> eodTickerList)
+        public void updateDailyTickerFromEODTicker(Share s, List<AsxEod> eodTickerList)
         {
             Ticker t = new Ticker();
 
-            TickerEODEntity tEOD = eodTickerList.Single(p => p.Symbol == s.Symbol);
+            AsxEod tEOD = eodTickerList.Single(p => p.Symbol == s.Symbol);
 
             t.TradingDate = tEOD.TradingDate;
             t.Open = tEOD.Open;
@@ -702,7 +702,7 @@ namespace Screen2.BLL
 
         public void LoadAsxEodRawFromAzure()
         {
-            List<TickerEODEntity> tickerEODList = null;
+            List<AsxEod> tickerEODList = null;
             try
             {
                 CloudStorageAccount storageAccount = CloudStorageAccount.Parse(
@@ -717,24 +717,17 @@ namespace Screen2.BLL
                 var blobs = container.ListBlobs();
 
                 int i = 0;
-                foreach(var blob in blobs)
+                foreach(CloudBlockBlob blob in blobs)
                 {
-                    i++;
-                    Console.WriteLine(blob.Uri);
+                    string text;
+                    using (var memoryStream = new MemoryStream())
+                    {
+                        blob.DownloadToStream(memoryStream);
+                        text = System.Text.Encoding.UTF8.GetString(memoryStream.ToArray());
+                        tickerEODList = GetTickerListFromCSVString(text);
+                        
+                    }
                 }
-                //CloudBlockBlob blockBlob2 = container.GetBlockBlobReference(fileName);
-
-                //if (blockBlob2.Exists())
-                //{
-                //    string text;
-                //    using (var memoryStream = new MemoryStream())
-                //    {
-                //        blockBlob2.DownloadToStream(memoryStream);
-                //        text = System.Text.Encoding.UTF8.GetString(memoryStream.ToArray());
-                //        tickerEODList = GetTickerListFromCSVString(text);
-
-                //    }
-                //}
             }
             catch (Exception ex)
             {
@@ -751,10 +744,10 @@ namespace Screen2.BLL
         /// </summary>
         /// <param name="dateString">The date string.</param>
         /// <returns></returns>
-        public List<TickerEODEntity> LoadDailyShareTickerFromAzure(string dateString)
+        public List<AsxEod> LoadDailyShareTickerFromAzure(string dateString)
         {
             string fileName = string.Format("Metastock_{0}.txt", dateString);
-            List<TickerEODEntity> tickerEODList = null;
+            List<AsxEod> tickerEODList = null;
             try
             {
                 CloudStorageAccount storageAccount = CloudStorageAccount.Parse(
@@ -833,19 +826,19 @@ namespace Screen2.BLL
         /// </summary>
         /// <param name="tickerString">The ticker string.</param>
         /// <returns></returns>
-        private List<TickerEODEntity> GetTickerListFromCSVString(string tickerString)
+        private List<AsxEod> GetTickerListFromCSVString(string tickerString)
         {
-            List<TickerEODEntity> tickerList = null;
+            List<AsxEod> tickerList = null;
             string aLine = null;
 
             if (!string.IsNullOrEmpty(tickerString))
             {
-                tickerList = new List<TickerEODEntity>();
+                tickerList = new List<AsxEod>();
                 StringReader strReader = new StringReader(tickerString);
                 while (true)
                 {
                     aLine = strReader.ReadLine();
-                    TickerEODEntity t;
+                    AsxEod t;
                     if (aLine != null)
                     {
                         t = GetASXTickerFromString(aLine);
@@ -869,16 +862,16 @@ namespace Screen2.BLL
         /// </summary>
         /// <param name="tickerString">The ticker string.</param>
         /// <returns></returns>
-        private TickerEODEntity GetASXTickerFromString(string tickerString)
+        private AsxEod GetASXTickerFromString(string tickerString)
         {
-            TickerEODEntity t = null;
+            AsxEod t = null;
             string suffix = ".AX";
 
             string[] tickerParts = tickerString.Split(',');
 
             if (tickerParts != null && tickerParts.Length > 0)
             {
-                t = new TickerEODEntity();
+                t = new AsxEod();
 
                 t.Symbol = tickerParts[0] + suffix;
                 t.TradingDate = int.Parse(tickerParts[1]);

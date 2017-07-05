@@ -152,6 +152,7 @@
     <Build Include="dbo\Tables\StatScanSets.sql" />
     <Build Include="dbo\Tables\Records.sql" />
     <Build Include="dbo\Tables\AsxEods.sql" />
+    <Build Include="dbo\Stored Procedures\USP_UploadAsxEod.sql" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Screen2.Database.publish.xml" />
