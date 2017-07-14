@@ -153,6 +153,8 @@
     <Build Include="dbo\Tables\Records.sql" />
     <Build Include="dbo\Tables\AsxEods.sql" />
     <Build Include="dbo\Stored Procedures\USP_UploadAsxEod.sql" />
+    <Build Include="dbo\Stored Procedures\USP_GetLatestAsxTradingDate.sql" />
+    <Build Include="dbo\Stored Procedures\USP_GetAsxEodByDate.sql" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Screen2.Database.publish.xml" />

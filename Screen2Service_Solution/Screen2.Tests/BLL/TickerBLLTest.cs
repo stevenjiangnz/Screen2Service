@@ -32,7 +32,7 @@ namespace Screen2.Tests.BLL
             Assert.IsTrue(result);
         }
 
-        [TestMethod]
+        //[TestMethod]
         public void TestLoadAsxRawFromAzure()
         {
             TickerBLL tbll = new TickerBLL(_unit, null);

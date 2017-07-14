@@ -11,8 +11,8 @@ BEGIN
 	-- interfering with SELECT statements.
 	SET NOCOUNT ON;
 
-	INSERT INTO Tickers
-	([TradingDate],[Open],[Close], [Low], [High], [Volumn],[AdjustedClose],[ShareId],[JSTicks])
+	INSERT INTO AsxEods
+	([TradingDate],[Open],[Close], [Low], [High], [Volumn],[AdjustedClose],[Symbol])
 	SELECT
     CONVERT(int, cast(colx.query('data(TradingDate) ') as varchar)) as [TradingDate],
     CONVERT(float, cast(colx.query('data(Open) ') as varchar))  as [Open],
@@ -21,9 +21,7 @@ BEGIN
 	CONVERT(float, cast(colx.query('data(High) ') as varchar)) as [High],
 	CONVERT(bigint, cast(colx.query('data(Volumn) ') as varchar)) as [Volumn],
 	CONVERT(float, cast(colx.query('data(AdjustedClose) ') as varchar)) as [AdjustedClose],
-	CONVERT(int, cast(colx.query('data(ShareId) ') as varchar)) as [ShareId],
-	CONVERT(bigint, cast(colx.query('data(JSTicks) ') as varchar)) as [JSTicks]
-	
+	Convert(varchar, cast(colx.query('data(Symbol) ') as varchar)) as [Symbol]
 FROM @TickersXML.nodes('ArrayOfAsxEod/AsxEod') AS Tabx(Colx)
 
 END

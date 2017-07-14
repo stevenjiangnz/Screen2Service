@@ -87,7 +87,6 @@
     <Compile Include="Record.cs" />
     <Compile Include="StatScanResultItem.cs" />
     <Compile Include="StatScanSet.cs" />
-    <Compile Include="TradePoistionHistory.cs" />
     <Compile Include="OutStockSearchResult.cs" />
     <Compile Include="Plan.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -102,7 +101,6 @@
     <Compile Include="ShareInfo.cs" />
     <Compile Include="SMAViewModel.cs" />
     <Compile Include="Ticker.cs" />
-    <Compile Include="TickerEODEntity.cs" />
     <Compile Include="TradeOrder.cs" />
     <Compile Include="TradePosition.cs" />
     <Compile Include="TradeReview.cs" />
