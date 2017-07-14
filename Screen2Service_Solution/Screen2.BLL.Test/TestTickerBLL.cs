@@ -70,18 +70,18 @@ namespace Screen2.BLL.Test
 
         }
 
-        [TestMethod]
-        public void Test_UpdateDailyShareTicker()
-        {
-            TickerBLL tBll = new TickerBLL(_unit);
-            ShareBLL sBLL = new ShareBLL(_unit);
+        //[TestMethod]
+        //public void Test_UpdateDailyShareTicker()
+        //{
+        //    TickerBLL tBll = new TickerBLL(_unit);
+        //    ShareBLL sBLL = new ShareBLL(_unit);
 
-            List<AsxEod> tickerEODList;
-            tickerEODList = tBll.LoadDailyShareTickerFromAzure("20160304");
+        //    List<AsxEod> tickerEODList;
+        //    tickerEODList = tBll.LoadDailyShareTickerFromAzure("20160304");
 
-            Share s = sBLL.GetShareBySymbol("MNE.AX");
-            tBll.UpdateDailyShareTicker(s, tickerEODList);
-        }
+        //    Share s = sBLL.GetShareBySymbol("MNE.AX");
+        //    tBll.UpdateDailyShareTicker(s, tickerEODList);
+        //}
 
         [TestMethod]
         public void Test_UpdateDailyShareTickerBatchToday()
@@ -161,6 +161,18 @@ namespace Screen2.BLL.Test
         {
             TickerBLL tBll = new TickerBLL(_unit);
             tBll.GetLatestTradingDateByShareZone(1585, null);
+        }
+
+        [TestMethod]
+        public void Test_UpdateDailyShareTicker_FromAsxEod_DB()
+        {
+            TickerBLL tBll = new TickerBLL(_unit);
+
+            ShareBLL sBll = new ShareBLL(_unit);
+
+            Share s = sBll.GetShareBySymbol("ORG.AX");
+
+            tBll.UpdateDailyShareTicker(s);
         }
     }
 }

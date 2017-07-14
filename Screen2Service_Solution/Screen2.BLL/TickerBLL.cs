@@ -65,7 +65,7 @@ namespace Screen2.BLL
 
             tList = this.GetTickerListByShareDB(shareId, tradingDate, endDate);
 
-            if(tList.Count > count)
+            if (tList.Count > count)
             {
                 returnList = tList.Take(count).ToList();
             }
@@ -138,7 +138,7 @@ namespace Screen2.BLL
 
             daySpan = this.GetTickerListByShareDB(shareId, startDate, endDate).Count;
 
-            if(daySpan >0)
+            if (daySpan > 0)
             {
                 daySpan = daySpan - 1;
             }
@@ -474,7 +474,6 @@ namespace Screen2.BLL
         {
             int successCount = 0;
             int failCount = 0;
-            List<AsxEod> tickerEODList;
 
             StringBuilder resultString = new StringBuilder();
 
@@ -490,8 +489,7 @@ namespace Screen2.BLL
             // upload the email to azure
             LoadDailyCSVFromGmail();
 
-            // load ticker list from azure
-            tickerEODList = LoadDailyShareTickerFromAzure(dateString);
+            this.LoadAsxEodRawFromAzure();
 
             List<Share> shareList = (new ShareBLL(_unit)).GetList().Where(p => p.IsActive).ToList();
 
@@ -499,7 +497,7 @@ namespace Screen2.BLL
             {
                 try
                 {
-                    UpdateDailyShareTicker(s, tickerEODList);
+                    UpdateDailyShareTicker(s);
                     successCount++;
 
                     resultString.Append(string.Format("successfully upload ticker for {0} {1}\n", s.Symbol, dateString));
@@ -526,122 +524,139 @@ namespace Screen2.BLL
             LogHelper.Info(_log, resultString.ToString());
         }
 
+
+        public void UpdateDailyShareTicker(Share s)
+        {
+            int lastDate = 0;
+            Ticker lastTicker = GetLastTicker(s.Id, null);
+
+            if (lastTicker != null)
+            {
+                lastDate = lastTicker.TradingDate;
+            }
+
+            List<AsxEod> asxEodList = _unit.DataContext.AsxEod.Where(c => c.TradingDate > lastDate && c.Symbol == s.Symbol).OrderBy(c => c.TradingDate).ToList();
+
+            foreach (var eod in asxEodList)
+            {
+                this.updateDailyTickerFromEODTicker(s, eod);
+            }
+        }
+
+
         /// <summary>
         /// Updates the daily share ticker.
         /// </summary>
         /// <param name="s">The s.</param>
         /// <param name="eodList">The eod list.</param>
-        public void UpdateDailyShareTicker(Share s, List<AsxEod> eodList)
-        {
-            Ticker lastTicker = GetLastTicker(s.Id, null);
+        //public void UpdateDailyShareTicker(Share s, List<AsxEod> eodList)
+        //{
+        //    Ticker lastTicker = GetLastTicker(s.Id, null);
 
-            if (lastTicker != null)
-            {
-                int nextTradingDay = DateHelper.NextTradingDay(lastTicker.TradingDate);
+        //    if (lastTicker != null)
+        //    {
+        //        int nextTradingDay = DateHelper.NextTradingDay(lastTicker.TradingDate);
 
-                if (eodList != null && eodList.Count > 0 &&
-                    nextTradingDay == eodList[0].TradingDate)
-                {
-                    try
-                    {
-                        // update daily from EOD file Azure
-                        updateDailyTickerFromEODTicker(s, eodList);
+        //        if (eodList != null && eodList.Count > 0 &&
+        //            nextTradingDay == eodList[0].TradingDate)
+        //        {
+        //            try
+        //            {
+        //                // update daily from EOD file Azure
+        //                // jjjj this to be removed
+        //                //updateDailyTickerFromEODTicker(s, eodList);
 
-                        _auditBLL.Create(new AuditLog
-                        {
-                            ActionMessage = string.Format("Success upload {0} via EOD azure", s.Symbol),
-                            ExtraData = "",
-                            ActionType = ActionType.UploadDailyTicker.ToString(),
-                            ActionResult = ""
-                        });
-                    }
-                    catch (Exception ex)
-                    {
-                        LogHelper.Error(_log, string.Format("Error load ticker from EOD {0} {1}. Load from yahoo instead", s.Symbol, nextTradingDay));
-                        LogHelper.Error(_log, ex.ToString());
+        //                _auditBLL.Create(new AuditLog
+        //                {
+        //                    ActionMessage = string.Format("Success upload {0} via EOD azure", s.Symbol),
+        //                    ExtraData = "",
+        //                    ActionType = ActionType.UploadDailyTicker.ToString(),
+        //                    ActionResult = ""
+        //                });
+        //            }
+        //            catch (Exception ex)
+        //            {
+        //                LogHelper.Error(_log, string.Format("Error load ticker from EOD {0} {1}. Load from yahoo instead", s.Symbol, nextTradingDay));
+        //                LogHelper.Error(_log, ex.ToString());
 
-                        // upload history data from yahoo
-                        this.UploadHistoryPriceTicker(s.Symbol, DateHelper.IntToDate(nextTradingDay), DateTime.Now);
+        //                // upload history data from yahoo
+        //                this.UploadHistoryPriceTicker(s.Symbol, DateHelper.IntToDate(nextTradingDay), DateTime.Now);
 
-                        _auditBLL.Create(new AuditLog
-                        {
-                            ActionMessage = string.Format("Error load EOD. Then successfully upload {0} via EOD azure", s.Symbol),
-                            ExtraData = "",
-                            ActionType = ActionType.UploadDailyTicker.ToString(),
-                            ActionResult = ""
-                        });
-                    }
-                }
-                else if (nextTradingDay <= DateHelper.DateToInt(DateTime.Now))
-                {
-                    // upload history data from yahoo
-                    this.UploadHistoryPriceTicker(s.Symbol, DateHelper.IntToDate(nextTradingDay), DateTime.Now);
+        //                _auditBLL.Create(new AuditLog
+        //                {
+        //                    ActionMessage = string.Format("Error load EOD. Then successfully upload {0} via EOD azure", s.Symbol),
+        //                    ExtraData = "",
+        //                    ActionType = ActionType.UploadDailyTicker.ToString(),
+        //                    ActionResult = ""
+        //                });
+        //            }
+        //        }
+        //        else if (nextTradingDay <= DateHelper.DateToInt(DateTime.Now))
+        //        {
+        //            // upload history data from yahoo
+        //            this.UploadHistoryPriceTicker(s.Symbol, DateHelper.IntToDate(nextTradingDay), DateTime.Now);
 
-                    _auditBLL.Create(new AuditLog
-                    {
-                        ActionMessage = string.Format("Success load from yahoo more than 1 day {0}.", s.Symbol),
-                        ExtraData = "",
-                        ActionType = ActionType.UploadDailyTicker.ToString(),
-                        ActionResult = string.Format("{0}  {1}  {2}", s.Symbol, DateHelper.IntToDate(nextTradingDay), DateTime.Now)
-                    });
+        //            _auditBLL.Create(new AuditLog
+        //            {
+        //                ActionMessage = string.Format("Success load from yahoo more than 1 day {0}.", s.Symbol),
+        //                ExtraData = "",
+        //                ActionType = ActionType.UploadDailyTicker.ToString(),
+        //                ActionResult = string.Format("{0}  {1}  {2}", s.Symbol, DateHelper.IntToDate(nextTradingDay), DateTime.Now)
+        //            });
 
-                }
-                else
-                {
-                    _auditBLL.Create(new AuditLog
-                    {
-                        ActionMessage = string.Format("Ticker {0} already loaded, skipped.", s.Symbol),
-                        ExtraData = "",
-                        ActionType = ActionType.UploadDailyTicker.ToString(),
-                        ActionResult = ""
-                    });
+        //        }
+        //        else
+        //        {
+        //            _auditBLL.Create(new AuditLog
+        //            {
+        //                ActionMessage = string.Format("Ticker {0} already loaded, skipped.", s.Symbol),
+        //                ExtraData = "",
+        //                ActionType = ActionType.UploadDailyTicker.ToString(),
+        //                ActionResult = ""
+        //            });
 
-                }
-            }
-            else
-            {
-                SettingBLL settingBLL = new SettingBLL(_unit);
-                int historyYears = int.Parse(settingBLL.GetSetting(SettingKey.HistoryDataYears));
-                DateTime defaultStart = DateTime.Now.AddYears(-1 * historyYears);
+        //        }
+        //    }
+        //    else
+        //    {
+        //        SettingBLL settingBLL = new SettingBLL(_unit);
+        //        int historyYears = int.Parse(settingBLL.GetSetting(SettingKey.HistoryDataYears));
+        //        DateTime defaultStart = DateTime.Now.AddYears(-1 * historyYears);
 
-                // upload history data from yahoo from day 1
-                this.UploadHistoryPriceTicker(s.Symbol, defaultStart, DateTime.Now);
+        //        // upload history data from yahoo from day 1
+        //        this.UploadHistoryPriceTicker(s.Symbol, defaultStart, DateTime.Now);
 
-                _auditBLL.Create(new AuditLog
-                {
-                    ActionMessage = string.Format("Success load from yahoo from day 1 {0}.", s.Symbol),
-                    ExtraData = "",
-                    ActionType = ActionType.UploadDailyTicker.ToString(),
-                    ActionResult = string.Format("{0}  {1}  {2}", s.Symbol, defaultStart, DateTime.Now)
-                });
-            }
+        //        _auditBLL.Create(new AuditLog
+        //        {
+        //            ActionMessage = string.Format("Success load from yahoo from day 1 {0}.", s.Symbol),
+        //            ExtraData = "",
+        //            ActionType = ActionType.UploadDailyTicker.ToString(),
+        //            ActionResult = string.Format("{0}  {1}  {2}", s.Symbol, defaultStart, DateTime.Now)
+        //        });
+        //    }
 
-        }
+        //}
 
         /// <summary>
         /// Updates the daily ticker from eod ticker.
         /// </summary>
         /// <param name="s">The s.</param>
         /// <param name="eodTickerList">The eod ticker list.</param>
-        public void updateDailyTickerFromEODTicker(Share s, List<AsxEod> eodTickerList)
+        public void updateDailyTickerFromEODTicker(Share s, AsxEod eod)
         {
             Ticker t = new Ticker();
 
-            AsxEod tEOD = eodTickerList.Single(p => p.Symbol == s.Symbol);
-
-            t.TradingDate = tEOD.TradingDate;
-            t.Open = tEOD.Open;
-            t.High = tEOD.High;
-            t.Low = tEOD.Low;
-            t.Close = tEOD.Close;
-            t.Volumn = tEOD.Volumn;
+            t.TradingDate = eod.TradingDate;
+            t.Open = eod.Open;
+            t.High = eod.High;
+            t.Low = eod.Low;
+            t.Close = eod.Close;
+            t.Volumn = eod.Volumn;
             t.ShareId = s.Id;
-            t.AdjustedClose = tEOD.AdjustedClose;
-            t.JSTicks = DateHelper.IntToJSTicks(tEOD.TradingDate);
+            t.AdjustedClose = eod.AdjustedClose;
+            t.JSTicks = DateHelper.IntToJSTicks(eod.TradingDate);
 
             this.Create(t);
-
-
         }
 
         /// <summary>
@@ -663,7 +678,7 @@ namespace Screen2.BLL
                         cmd.CommandType = CommandType.StoredProcedure;
                         cmd.Parameters.Add("ShareID", SqlDbType.Int).Value = shareId;
 
-                        if(tradingDate.HasValue)
+                        if (tradingDate.HasValue)
                         {
                             cmd.Parameters.Add("TradingDate", SqlDbType.Int).Value = tradingDate.Value;
                         }
@@ -703,6 +718,8 @@ namespace Screen2.BLL
         public void LoadAsxEodRawFromAzure()
         {
             List<AsxEod> tickerEODList = null;
+            AsxEodBLL asxBll = new AsxEodBLL(_unit);
+
             try
             {
                 CloudStorageAccount storageAccount = CloudStorageAccount.Parse(
@@ -713,19 +730,28 @@ namespace Screen2.BLL
 
                 // Retrieve reference to a previously created container.
                 CloudBlobContainer container = blobClient.GetContainerReference("asxeod");
+                CloudBlobContainer containerDest = blobClient.GetContainerReference("asxeod-processed");
 
                 var blobs = container.ListBlobs();
 
-                int i = 0;
-                foreach(CloudBlockBlob blob in blobs)
+                foreach (CloudBlockBlob blob in blobs)
                 {
                     string text;
                     using (var memoryStream = new MemoryStream())
                     {
-                        blob.DownloadToStream(memoryStream);
-                        text = System.Text.Encoding.UTF8.GetString(memoryStream.ToArray());
-                        tickerEODList = GetTickerListFromCSVString(text);
-                        
+                        int tradingDate = this.GetTradingDateFromName(blob.Name);
+                        if (!asxBll.IsAsxEodExisting(tradingDate))
+                        {
+                            blob.DownloadToStream(memoryStream);
+                            text = System.Text.Encoding.UTF8.GetString(memoryStream.ToArray());
+                            tickerEODList = GetTickerListFromCSVString(text);
+                            memoryStream.Position = 0;
+                            asxBll.SaveAsxEodListToDB(tickerEODList);
+
+                            CloudBlockBlob destBlob = containerDest.GetBlockBlobReference(blob.Name);
+                            destBlob.UploadFromStream(memoryStream);
+                            blob.DeleteAsync();
+                        }
                     }
                 }
             }
@@ -734,9 +760,13 @@ namespace Screen2.BLL
                 LogHelper.Error(_log, ex.ToString());
                 throw;
             }
+        }
 
-            //return tickerEODList;
+        private int GetTradingDateFromName(string uri)
+        {
+            string dateString = new String(uri.Where(Char.IsDigit).ToArray());
 
+            return int.Parse(dateString);
         }
 
         /// <summary>
@@ -818,7 +848,7 @@ namespace Screen2.BLL
             Boolean result;
 
             result = loader.LoadTickers();
-            
+
             return result;
         }
         /// <summary>
