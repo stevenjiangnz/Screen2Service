@@ -497,6 +497,11 @@ namespace Screen2.BLL
             {
                 try
                 {
+                    //if (s.Symbol == "AAX.AX")
+                    //{
+                    //    Debug.Write("AAX.AX");
+                    //}
+
                     UpdateDailyShareTicker(s);
                     successCount++;
 

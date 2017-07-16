@@ -48,7 +48,7 @@ AS
   	  ,[Vol_AVG20]
   	  ,[Delt_Diff_ADX],
 	  [Prev_Heikin]
-  FROM [Screen2DB].[dbo].[Indicators]
+  FROM [Indicators]
   Where [ShareId] = @ShareId AND
 	([TradingDate]>= @StartDate OR @StartDate =-1) AND
 	([TradingDate]<= @EndDate OR @EndDate =-1)

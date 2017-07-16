@@ -5,6 +5,7 @@ using Screen2.BLL;
 using Screen2.BLL.Interface;
 using Screen2.DAL;
 using Screen2.DAL.Interface;
+using Screen2.Utils;
 
 namespace Screen2.Tests.BLL
 {
@@ -15,29 +16,41 @@ namespace Screen2.Tests.BLL
         private Mock<ITickerLoader> tickerMock = new Mock<ITickerLoader>();
         UnitWork _unit = new UnitWork(new DataContext());
 
-        [TestInitialize]
-        public void Initialize()
-        {
-            tickerMock.Setup(loader => loader.LoadTickers()).Returns(true);
-        }
+        //[TestInitialize]
+        //public void Initialize()
+        //{
+        //    tickerMock.Setup(loader => loader.LoadTickers()).Returns(true);
+        //}
+
+
+        //[TestMethod]
+        //public void TestLoadTickers_Should_Return_True()
+        //{
+        //    TickerBLL tbll = new TickerBLL(unitMock.Object, "testconn");
+
+        //    Boolean result = tbll.LoadTickers(tickerMock.Object);
+
+        //    Assert.IsTrue(result);
+        //}
+
+        //[TestMethod]
+        //public void TestLoadAsxRawFromAzure()
+        //{
+        //    TickerBLL tbll = new TickerBLL(_unit, null);
+
+        //    tbll.LoadAsxEodRawFromAzure();
+        //}
 
 
         [TestMethod]
-        public void TestLoadTickers_Should_Return_True()
-        {
-            TickerBLL tbll = new TickerBLL(unitMock.Object, "testconn");
-
-            Boolean result = tbll.LoadTickers(tickerMock.Object);
-
-            Assert.IsTrue(result);
-        }
-
-        //[TestMethod]
         public void TestLoadAsxRawFromAzure()
         {
-            TickerBLL tbll = new TickerBLL(_unit, null);
+            TickerBLL tBll = new TickerBLL(_unit, null);
 
-            tbll.LoadAsxEodRawFromAzure();
+            int tradingDate = DateHelper.DateToInt(DateTime.Now);
+            tBll.UpdateDailyShareTickerBatchToday(tradingDate.ToString());
+
         }
+
     }
 }
