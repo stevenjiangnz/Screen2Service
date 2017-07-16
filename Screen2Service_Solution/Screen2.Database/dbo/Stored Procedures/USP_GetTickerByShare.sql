@@ -13,7 +13,7 @@ AS
       ,[AdjustedClose]
       ,[ShareId]
 	  ,[JSTicks]
-  FROM [Screen2DB].[dbo].[Tickers]
+  FROM [Tickers]
   Where [ShareId] = @ShareId AND
 	([TradingDate]>= @StartDate OR @StartDate =-1) AND
 	([TradingDate]<= @EndDate OR @EndDate =-1)
