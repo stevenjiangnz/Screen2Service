@@ -52,5 +52,13 @@ namespace Screen2.Tests.BLL
 
         }
 
+        [TestMethod]
+        public void TestProcessIndicators()
+        {
+            IndicatorBLL iBll = new IndicatorBLL(_unit);
+
+            iBll.ProcessIndicatorFull();
+        }
+
     }
 }
