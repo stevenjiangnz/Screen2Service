@@ -20,6 +20,7 @@ namespace Screen2.DAL
         {
             Configuration.ProxyCreationEnabled = false;
             Configuration.LazyLoadingEnabled = false;
+            ((IObjectContextAdapter)this).ObjectContext.CommandTimeout = 180;
         }
 
         public IDbSet<TradeOrder> Orders { get; set; }
@@ -63,7 +64,9 @@ namespace Screen2.DAL
 
         public static DataContext Create()
         {
-            return new DataContext();
+            var context = new DataContext();
+            ((IObjectContextAdapter)context).ObjectContext.CommandTimeout = 180;
+            return context;
         }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
