@@ -16,5 +16,6 @@ namespace Screen2.Entity
         public DateTime? EndDate { get; set; }
         public string Status { get; set; }
         public string Note { get; set; }
+        public bool IsCurrent { get; set; }
     }
 }
