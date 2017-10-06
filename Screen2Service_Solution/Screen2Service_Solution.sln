@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 15
-VisualStudioVersion = 15.0.26430.12
+# Visual Studio 14
+VisualStudioVersion = 14.0.25420.1
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MaasOne", "MaasOne\MaasOne.csproj", "{203E203C-9025-4D3F-BAD7-F36D53E8B9E7}"
 EndProject
@@ -20,8 +20,6 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Screen2.Shared", "Screen2.Shared\Screen2.Shared.csproj", "{F8B8E31B-958C-4D55-9A71-B734F5147FE5}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Screen2AzureWeb", "Screen2AzureWeb\Screen2AzureWeb.csproj", "{6275BE7F-0B56-4365-9F25-0D6D3707F69F}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Screen2Test", "Screen2Test\Screen2Test.csproj", "{E93D8D3A-F37F-4CC0-8AFD-4B04E959A355}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Screen2.DAL", "Screen2.DAL\Screen2.DAL.csproj", "{E57E125B-0F46-4DEE-BC31-AD1B1E76EBC7}"
 EndProject
@@ -169,18 +167,6 @@ Global
 		{6275BE7F-0B56-4365-9F25-0D6D3707F69F}.Release|x64.Build.0 = Release|Any CPU
 		{6275BE7F-0B56-4365-9F25-0D6D3707F69F}.Release|x86.ActiveCfg = Release|Any CPU
 		{6275BE7F-0B56-4365-9F25-0D6D3707F69F}.Release|x86.Build.0 = Release|Any CPU
-		{E93D8D3A-F37F-4CC0-8AFD-4B04E959A355}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{E93D8D3A-F37F-4CC0-8AFD-4B04E959A355}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{E93D8D3A-F37F-4CC0-8AFD-4B04E959A355}.Debug|x64.ActiveCfg = Debug|Any CPU
-		{E93D8D3A-F37F-4CC0-8AFD-4B04E959A355}.Debug|x64.Build.0 = Debug|Any CPU
-		{E93D8D3A-F37F-4CC0-8AFD-4B04E959A355}.Debug|x86.ActiveCfg = Debug|Any CPU
-		{E93D8D3A-F37F-4CC0-8AFD-4B04E959A355}.Debug|x86.Build.0 = Debug|Any CPU
-		{E93D8D3A-F37F-4CC0-8AFD-4B04E959A355}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{E93D8D3A-F37F-4CC0-8AFD-4B04E959A355}.Release|Any CPU.Build.0 = Release|Any CPU
-		{E93D8D3A-F37F-4CC0-8AFD-4B04E959A355}.Release|x64.ActiveCfg = Release|Any CPU
-		{E93D8D3A-F37F-4CC0-8AFD-4B04E959A355}.Release|x64.Build.0 = Release|Any CPU
-		{E93D8D3A-F37F-4CC0-8AFD-4B04E959A355}.Release|x86.ActiveCfg = Release|Any CPU
-		{E93D8D3A-F37F-4CC0-8AFD-4B04E959A355}.Release|x86.Build.0 = Release|Any CPU
 		{E57E125B-0F46-4DEE-BC31-AD1B1E76EBC7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{E57E125B-0F46-4DEE-BC31-AD1B1E76EBC7}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E57E125B-0F46-4DEE-BC31-AD1B1E76EBC7}.Debug|x64.ActiveCfg = Debug|Any CPU

@@ -407,7 +407,7 @@ namespace Screen2.BLL
                );
 
 
-                var emailList = mailRepository.GetUnreadMails("inbox");
+                 var emailList = mailRepository.GetUnreadMails("inbox");
 
                 foreach (Message email in emailList)
                 {
@@ -417,7 +417,8 @@ namespace Screen2.BLL
                         foreach (MimePart attachment in email.Attachments)
                         {
                             string result = System.Text.Encoding.UTF8.GetString(attachment.BinaryContent);
-                            UploadDailyPriceTickerCSVToAzure(attachment.ContentName, result);
+                            SaveTickerCSVToLocal(attachment.ContentName, result);
+                            //UploadDailyPriceTickerCSVToAzure(attachment.ContentName, result);
 
                             _auditBLL.Create(new AuditLog
                             {
@@ -437,6 +438,22 @@ namespace Screen2.BLL
 
                 throw;
             }
+        }
+
+        public void SaveTickerCSVToLocal(string fileName, string fileContent)
+        {
+            string tickerPath = ConfigurationManager.AppSettings["EODPath"];
+            string queuePath = Path.Combine(tickerPath, "queue");
+
+            if (!Directory.Exists(queuePath))
+            {
+                Directory.CreateDirectory(queuePath);
+            }
+
+            string filePath = Path.Combine(queuePath, fileName);
+
+            File.WriteAllText(filePath, fileContent);
+
         }
 
         /// <summary>
@@ -486,10 +503,9 @@ namespace Screen2.BLL
             });
 
             Console.WriteLine("Start to update daily share tickers for " + dateString);
-            // upload the email to azure
             LoadDailyCSVFromGmail();
 
-            this.LoadAsxEodRawFromAzure();
+            this.LoadAsxEodRawFromDisk();
 
             List<Share> shareList = (new ShareBLL(_unit)).GetList().Where(p => p.IsActive).ToList();
 
@@ -497,11 +513,6 @@ namespace Screen2.BLL
             {
                 try
                 {
-                    //if (s.Symbol == "AAX.AX")
-                    //{
-                    //    Debug.Write("AAX.AX");
-                    //}
-
                     UpdateDailyShareTicker(s);
                     successCount++;
 
@@ -718,6 +729,45 @@ namespace Screen2.BLL
             }
 
             return t;
+        }
+
+        public void LoadAsxEodRawFromDisk()
+        {
+            AsxEodBLL asxBll = new AsxEodBLL(_unit);
+
+            string tickerPath = ConfigurationManager.AppSettings["EODPath"];
+            string queuePath = Path.Combine(tickerPath, "queue");
+
+            string targetPath; 
+
+            var txtFiles = Directory.EnumerateFiles(queuePath, "*.txt", SearchOption.AllDirectories);
+
+            foreach (string currentFile in txtFiles)
+            {
+                string fileName = currentFile.Substring(queuePath.Length + 1);
+                string targetYear = fileName.Substring(fileName.IndexOf("_") + 1, 4);
+                targetPath = Path.Combine(tickerPath, "processed", targetYear);
+
+                int tradingDate = this.GetTradingDateFromName(fileName);
+
+                if (!asxBll.IsAsxEodExisting(tradingDate))
+                {
+
+                    string tickString = File.ReadAllText(currentFile);
+
+                    var tickerEODList = GetTickerListFromCSVString(tickString);
+
+                    asxBll.SaveAsxEodListToDB(tickerEODList);
+                }
+
+                if (!Directory.Exists(targetPath))
+                {
+                    Directory.CreateDirectory(targetPath);
+                }
+
+                Directory.Move(currentFile, Path.Combine(targetPath, fileName));
+            }
+
         }
 
         public void LoadAsxEodRawFromAzure()
