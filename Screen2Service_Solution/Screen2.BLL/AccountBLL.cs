@@ -33,7 +33,43 @@ namespace Screen2.BLL
             return aList;
         }
 
-        
+
+        public List<OutAccount> GetAccountFullList()
+        {
+            List<OutAccount> aList = new List<OutAccount>();
+
+            try
+            {
+                using (SqlConnection conn = new SqlConnection(_connectionString))
+                {
+                    using (SqlCommand cmd = new SqlCommand("USP_GetAccountFull", conn))
+                    {
+                        cmd.CommandType = CommandType.StoredProcedure;
+                        cmd.Connection.Open();
+
+                        var reader = cmd.ExecuteReader();
+                        if (reader.HasRows)
+                        {
+                            OutAccount oa;
+                            while (reader.Read())
+                            {
+                                oa = ConvertFromDB(reader);
+                                aList.Add(oa);
+                            }
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                LogHelper.Error(_log, "Error read account full from DB. ", ex);
+                throw;
+            }
+
+            return aList;
+        }
+
+
         public List<OutAccount> GetAccountFullListByUser(string userId, int? zoneId)
         {
             List<OutAccount> aList = new List<OutAccount>();
