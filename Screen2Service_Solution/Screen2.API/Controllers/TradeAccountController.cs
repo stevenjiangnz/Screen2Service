@@ -45,6 +45,30 @@ namespace Screen2.Api.Controllers
         }
 
         [HttpGet]
+        [Route("getlistfull")]
+        public async Task<IHttpActionResult> GetListFull(int? zoneId = null)
+        {
+            List<OutAccount> slist = null;
+
+            try
+            {
+                var currentUser = await base.GetCurrentUser();
+
+                AccountBLL bll = new AccountBLL(_unit);
+
+                slist = bll.GetAccountFullList();
+            }
+            catch (Exception ex)
+            {
+                LogHelper.Error(_log, ex.ToString());
+                return InternalServerError(ex);
+            }
+
+            return Ok(slist);
+        }
+
+
+        [HttpGet]
         [Route("getbyzone")]
         public async Task<IHttpActionResult> GetByZone(int? zoneId = null)
         {

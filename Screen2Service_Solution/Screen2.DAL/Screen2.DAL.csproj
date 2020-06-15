@@ -345,6 +345,14 @@
     <Compile Include="Migrations\201707061131311_add-asxeod1.Designer.cs">
       <DependentUpon>201707061131311_add-asxeod1.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201709071121542_test.cs" />
+    <Compile Include="Migrations\201709071121542_test.Designer.cs">
+      <DependentUpon>201709071121542_test.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201709071134028_updateZone.cs" />
+    <Compile Include="Migrations\201709071134028_updateZone.Designer.cs">
+      <DependentUpon>201709071134028_updateZone.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="UnitWork.cs" />
@@ -539,6 +547,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201707061131311_add-asxeod1.resx">
       <DependentUpon>201707061131311_add-asxeod1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201709071121542_test.resx">
+      <DependentUpon>201709071121542_test.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201709071134028_updateZone.resx">
+      <DependentUpon>201709071134028_updateZone.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

@@ -3,12 +3,14 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Moq;
 using Screen2.BLL;
 using Screen2.BLL.Interface;
+using Screen2.DAL;
 
 namespace Screen2.Tests.BLL
 {
     [TestClass]
     public class TickerLoaderTest
     {
+        UnitWork _unit = new UnitWork(new DataContext());
 
         [TestMethod]
         public void TestMethod1()
@@ -42,6 +44,14 @@ namespace Screen2.Tests.BLL
             var result = bll.LoadTickers(mock.Object);
 
             Assert.IsFalse(result);
+        }
+
+        [TestMethod]
+        public void Test_LoadAsxEodRawFromDisk()
+        {
+            TickerBLL bll = new TickerBLL(_unit);
+
+            bll.LoadAsxEodRawFromDisk();
         }
 
     }

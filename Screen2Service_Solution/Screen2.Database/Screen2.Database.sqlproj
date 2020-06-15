@@ -155,6 +155,7 @@
     <Build Include="dbo\Stored Procedures\USP_UploadAsxEod.sql" />
     <Build Include="dbo\Stored Procedures\USP_GetLatestAsxTradingDate.sql" />
     <Build Include="dbo\Stored Procedures\USP_GetAsxEodByDate.sql" />
+    <Build Include="dbo\Stored Procedures\USP_GetAccountFull.sql" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Screen2.Database.publish.xml" />

@@ -8,6 +8,9 @@
     [Owner]       NVARCHAR (MAX) NULL,
     [EndDate]     DATETIME       NULL,
     [TradingDate] INT            DEFAULT ((0)) NOT NULL,
+    [IsCurrent]   BIT            DEFAULT ((0)) NOT NULL,
     CONSTRAINT [PK_dbo.Zones] PRIMARY KEY CLUSTERED ([Id] ASC)
 );
+
+
 
